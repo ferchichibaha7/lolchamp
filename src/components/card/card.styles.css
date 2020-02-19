@@ -1,0 +1,40 @@
+.card-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background: inherit;
+    border-radius: 5px;
+    padding: 25px;
+  
+    cursor: pointer;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);   
+
+
+    z-index: 1;
+  }
+  
+  .card-container:hover {
+    transform: scale(1.05);
+  }
+.card-icon{
+    height: 200px;
+    width: 100%;
+}  
+
+.card-container::before{
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+    margin: -20px;
+}

@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
+
+import {CardList} from './components/card-list/card-list.component';
+import {SearchBox} from './components/search-box/search-box.component';
 import './App.css';
 
 class App extends Component{
 constructor(){
   super();
   this.state={
-    champions:[]
+    champions:[],
+    searchField:''
   }
 }
 
@@ -15,33 +19,23 @@ componentDidMount(){
   .then(champs=>this.setState({champions:champs}))
 }
 
+handleChange =(e)=>{
+  this.setState({searchField:e.target.value})
+}
+
   render(){
+const { champions,searchField } =this.state;
+const filtredChampions=champions.filter(champion=>champion.name.toLowerCase().includes(searchField.toLowerCase())
+)
+
     return(
       <div className="App">
-     {
-       this.state.champions.map(monster=>
-      <div key={monster.id}>
-<h1>{monster.name}</h1>
-<img src={monster.icon} alt="champIcon"></img>
-<br></br>
-<code>{monster.description}</code>
-<br></br>
-<br></br>
-<br></br>
-</div>
 
-      )
-     }
-
-
-
-
-
-
-
-
-
-
+        <SearchBox 
+        placeholder="Search Champion"
+        handleChange={this.handleChange}
+        />
+          <CardList champions={filtredChampions} /> 
     </div>
     )
   }
